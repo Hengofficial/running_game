@@ -42,8 +42,8 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         self.player_input()
-        if(display_score() >= 260):
-            self.rect.x += 2
+        if(display_score()>=270):
+            self.rect.x+=2
         self.apply_gravity()
         self.animation_state()
 class Obstacle(pygame.sprite.Sprite):
@@ -73,8 +73,8 @@ class Obstacle(pygame.sprite.Sprite):
     def update(self):
         self.animation_state()
         self.rect.x -= 5
-        if(display_score()>=265):
-            obstacle_group.empty();
+        if(display_score()>=270):
+            self.rect.x= randint(1000, 3000)
         self.destroy()
 
     def destroy(self):
@@ -94,6 +94,8 @@ def display_score():
 def collision_sprite():
     if pygame.sprite.spritecollide(player.sprite, obstacle_group, False):
         obstacle_group.empty()
+        death_sound = pygame.mixer.Sound("audio/death.wav")
+        death_sound.play()
         return False
     else:
         return True
@@ -164,7 +166,7 @@ while True:
                 game_active = True
                 start_time = int(pygame.time.get_ticks() / 100)
                 player.sprite.rect.x = 180
-                if (score >= 250):
+                if (score >= 240):
                     flag_x = 1000
                     flag_x -= 1
                     screen.blit(flag_surface, (flag_x, 210))
@@ -188,7 +190,6 @@ while True:
         obstacle_group.update()
         game_active = collision_sprite()
         # sdeyaddmroe
-
         player.draw(screen)
         player.update()
 
@@ -209,7 +210,7 @@ while True:
         else:
             screen.blit(lost, lost_rect)
             screen.blit(score_message, (310, 150))
-    if(score >= 250):
+    if(score >= 240):
         flag_x -= 1
         screen.blit(flag_surface, (flag_x, 210))
     if (score > 300):
