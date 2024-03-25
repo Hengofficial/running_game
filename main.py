@@ -42,8 +42,8 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         self.player_input()
-        if(display_score()>=260):
-            self.rect.x+=2
+        if(display_score() >= 260):
+            self.rect.x += 2
         self.apply_gravity()
         self.animation_state()
 class Obstacle(pygame.sprite.Sprite):
@@ -73,7 +73,7 @@ class Obstacle(pygame.sprite.Sprite):
     def update(self):
         self.animation_state()
         self.rect.x -= 5
-        if(display_score()>=260):
+        if(display_score()>=265):
             obstacle_group.empty();
         self.destroy()
 
@@ -164,7 +164,7 @@ while True:
                 game_active = True
                 start_time = int(pygame.time.get_ticks() / 100)
                 player.sprite.rect.x = 180
-                if (score >= 220):
+                if (score >= 250):
                     flag_x = 1000
                     flag_x -= 1
                     screen.blit(flag_surface, (flag_x, 210))
@@ -186,7 +186,7 @@ while True:
         score = display_score()
         obstacle_group.draw(screen)
         obstacle_group.update()
-        #game_active = collision_sprite()
+        game_active = collision_sprite()
         # sdeyaddmroe
 
         player.draw(screen)
@@ -209,7 +209,7 @@ while True:
         else:
             screen.blit(lost, lost_rect)
             screen.blit(score_message, (310, 150))
-    if(score >= 240):
+    if(score >= 250):
         flag_x -= 1
         screen.blit(flag_surface, (flag_x, 210))
     if (score > 300):
