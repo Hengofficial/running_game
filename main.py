@@ -147,7 +147,7 @@ cloud_y = 0
 cloud_2=pygame.image.load('graphics/cloud2.png')
 montain=pygame.image.load('graphics/big.png')
 # Timer
-obstacle_timer = pygame.USEREVENT + 1
+obstacle_timer = pygame.USEREVENT + 5
 pygame.time.set_timer(obstacle_timer, 1500)
 flag_x = 1000
 # sdeyaddmore
